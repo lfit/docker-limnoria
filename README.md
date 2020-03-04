@@ -1,12 +1,8 @@
 # docker-limnoria
 
-[![CircleCI](https://circleci.com/gh/dpyro/docker-limnoria.svg?style=svg)](https://circleci.com/gh/dpyro/docker-limnoria)
-
-This is a Dockerfile repository for [Limnoria](https://github.com/ProgVal/Limnoria), an IRC bot based on Supybot. The base is the [official Python image](https://hub.docker.com/_/python/) using the `3.6-alpine` tag (Python 3.6 on Alpine Linux). You'll probably need [Docker](https://www.docker.com/community-edition) to have any real fun.
+This is a Dockerfile repository for [Limnoria](https://github.com/ProgVal/Limnoria), an IRC bot based on Supybot. The base is the [official Python image](https://hub.docker.com/_/python/) using the `3.8-alpine` tag (Python 3.8 on Alpine Linux). You'll probably need [Docker](https://www.docker.com/community-edition) to have any real fun.
 
 ## Quickstart
-
-If you just want the image an automated build is [available](https://hub.docker.com/r/dpyro/docker-limnoria/) on the Docker Hub. You can simply run:
 
 ```shell
 docker run -v ~/limnoria:/data --rm -it dpyro/docker-limnoria
