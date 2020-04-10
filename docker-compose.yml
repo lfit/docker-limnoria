@@ -9,7 +9,7 @@ services:
       - data:/data
       - meetings:/data/meetings
     environment:
-      SUPYBOT_FREENODE_PASSWORD: JuWriagtolyitsubugtefWaw
+      SUPYBOT_FREENODE_PASSWORD: "somepasswordhere"
       SUPYBOT_FREENODE_CHANNELS: "#abaranov-test"
     networks:
       - meetbot
