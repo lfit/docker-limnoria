@@ -11,16 +11,20 @@ RUN apk add --update git gettext && \
     apk del git && \
     rm -rf /var/cache/apk/*
 
-ENV SUPYBOT_NICK="collabottest" \
+ENV SUPYBOT_UID=101 \
+    SUPYBOT_NICK="collabottest" \
     SUPYBOT_USER="collabottest" \
     SUPYBOT_NETWORKS="freenode" \
     SUPYBOT_FREENODE_PASSWORD="" \
     SUPYBOT_FREENODE_SERVERS="chat.freenode.net:6697" \
     SUPYBOT_FREENODE_CHANNELS="#abaranov-test" \
+    SUPYBOT_PLUGINS="MeetBot Lart Admin ChannelLogger Misc User Owner Config Channel Karma" \
     MEETBOT_LOG_FILEDIR="/data/meetings/" \
-    MEETBOT_LOG_URLPREFIX="http://example.com/meetings/"
+    MEETBOT_LOG_URLPREFIX="http://example.com/meetings/" \
+    MEETBOT_INFO_URL="http://wiki.debian.org/MeetBot" \
+    MEETBOT_FILENAMEPREFIX="%(channel)s/%%Y/%(channel)s.%%F-%%H.%%M"
 
-RUN adduser -S limnoria && \
+RUN adduser -S -u $SUPYBOT_UID limnoria && \
     mkdir -p /data && \
     mkdir -p /config/conf && \
     chown -R limnoria /data

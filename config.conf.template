@@ -1,11 +1,11 @@
-supybot.nick: SUPYBOT_NICK
+supybot.nick: ${SUPYBOT_NICK}
 supybot.nick.alternates: %s` %s_
 supybot.ident: supybot
-supybot.user: SUPYBOT_USER
-supybot.networks: SUPYBOT_NETWORKS
-supybot.networks.freenode.password: SUPYBOT_FREENODE_PASSWORD
-supybot.networks.freenode.servers: SUPYBOT_FREENODE_SERVERS
-supybot.networks.freenode.channels: SUPYBOT_FREENODE_CHANNELS
+supybot.user: ${SUPYBOT_USER}
+supybot.networks: ${SUPYBOT_NETWORKS}
+supybot.networks.freenode.password: ${SUPYBOT_FREENODE_PASSWORD}
+supybot.networks.freenode.servers: ${SUPYBOT_FREENODE_SERVERS}
+supybot.networks.freenode.channels: ${SUPYBOT_FREENODE_CHANNELS}
 supybot.networks.freenode.channels.key:
 supybot.networks.freenode.ssl: True
 supybot.reply.format.time: %I:%M %p, %B %d, %Y
@@ -108,7 +108,7 @@ supybot.directories.data.tmp: /data/data/tmp
 supybot.directories.backup: /data/backup
 supybot.directories.plugins: /data/plugins
 supybot.directories.log: /data/logs
-supybot.plugins: MeetBot Lart Admin ChannelLogger Misc User Owner Config Channel Karma
+supybot.plugins: ${SUPYBOT_PLUGINS}
 supybot.plugins.Admin: True
 supybot.plugins.Admin.public: True
 supybot.plugins.Channel: True
@@ -142,37 +142,47 @@ supybot.plugins.Lart: True
 supybot.plugins.Lart.public: True
 supybot.plugins.Lart.showIds: False
 supybot.plugins.MeetBot: True
+supybot.plugins.MeetBot.enableSupybotBasedConfig: False
 supybot.plugins.MeetBot.public: True
-supybot.plugins.MeetBot.enableSupybotBasedConfig: True
-supybot.plugins.MeetBot.MeetBotInfoURL: http://wiki.debian.org/MeetBot
-supybot.plugins.MeetBot.cssEmbed_log: True
-supybot.plugins.MeetBot.cssEmbed_minutes: True
-supybot.plugins.MeetBot.cssFile_log: default
-supybot.plugins.MeetBot.cssFile_minutes: default
-supybot.plugins.MeetBot.endMeetingMessage: Meeting ended %(endtime)s %(timeZone)s.  Information about MeetBot at %(MeetBotInfoURL)s . (v %(__version__)s)\\nMinutes:        %(urlBasename)s.html\\nMinutes (text): %(urlBasename)s.txt\\nLog:            %(urlBasename)s.log.html
-supybot.plugins.MeetBot.filenamePattern: %(channel)s/%%Y/%(channel)s.%%F-%%H.%%M
-supybot.plugins.MeetBot.input_codec: utf-8
-supybot.plugins.MeetBot.logFileDir: /data/meetings
-supybot.plugins.MeetBot.logUrlPrefix: http://example.con/meetings
-supybot.plugins.MeetBot.output_codec: utf-8
-supybot.plugins.MeetBot.pygmentizeStyle: friendly
-supybot.plugins.MeetBot.specialChannelFilenamePattern: %(channel)s/%(channel)s
-supybot.plugins.MeetBot.startMeetingMessage: Meeting started %(starttime)s %(timeZone)s.  The chair is %(chair)s. Information about MeetBot at %(MeetBotInfoURL)s.\\nUseful Commands: #action #agreed #help #info #idea #link #topic.
-supybot.plugins.MeetBot.timeZone: UTC
-supybot.plugins.MeetBot.update_realtime: True
-supybot.plugins.MeetBot.writer_map: HTML2:.html HTMLlog2:.log.html Text:.txt
+supybot.plugins.MeetBot.logFileDir: /data/meetings/
+supybot.plugins.MeetBot.logUrlPrefix: http://example.con/meetings/
 supybot.plugins.Misc: True
 supybot.plugins.Misc.public: True
 supybot.plugins.Misc.listPrivatePlugins: True
 supybot.plugins.Misc.timestampFormat: [%H:%M:%S]
 supybot.plugins.Misc.last.nested.includeTimestamp: False
 supybot.plugins.Misc.last.nested.includeNick: False
+supybot.plugins.Protector: False
+supybot.plugins.Protector.public: True
+supybot.plugins.Protector.enable: True
+supybot.plugins.Protector.immune:
 supybot.plugins.Owner: True
 supybot.plugins.Owner.public: True
 supybot.plugins.Owner.quitMsg:
 supybot.plugins.User: True
 supybot.plugins.User.public: True
 supybot.plugins.alwaysLoadImportant: True
+supybot.plugins.Services: True
+supybot.plugins.Services.public: True
+supybot.plugins.Services.nicks: ${SUPYBOT_NICK}
+supybot.plugins.Services.disabledNetworks: QuakeNet
+supybot.plugins.Services.noJoinsUntilIdentified: True
+supybot.plugins.Services.ghostDelay: 60
+supybot.plugins.Services.NickServ: NickServ
+supybot.plugins.Services.NickServ.password.${SUPYBOT_NICK}: ${SUPYBOT_FREENODE_PASSWORD}
+supybot.plugins.Services.ChanServ: ChanServ
+supybot.plugins.Services.ChanServ.password:
+supybot.plugins.Services.ChanServ.op: True
+supybot.plugins.Services.ChanServ.halfop: False
+supybot.plugins.Services.ChanServ.voice: False
+supybot.plugins.Topic: False
+supybot.plugins.Topic.public: True
+supybot.plugins.Topic.separator:  ||
+supybot.plugins.Topic.format: $topic ($nick)
+supybot.plugins.Topic.recognizeTopiclen: True
+supybot.plugins.Topic.default:
+supybot.plugins.Topic.undo.max: 10
+supybot.plugins.Topic.requireManageCapability: channel,op; channel,halfop
 supybot.databases:
 supybot.databases.users.filename: /data/conf/users.conf
 supybot.databases.users.timeoutIdentification: 0
