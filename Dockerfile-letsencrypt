@@ -1,3 +1,5 @@
 FROM linuxserver/letsencrypt
 # Enable autoindex
 RUN echo "autoindex on;" >  /etc/nginx/conf.d/autoindex.conf
+# Rewrite /meetings
+RUN echo 'rewrite ^/meetings/(.*) /$1 last;' > /defaults/proxy-confs/meetings.subfolder.conf
