@@ -13,17 +13,23 @@ services:
       SUPYBOT_FREENODE_CHANNELS: "#abaranov-test"
     networks:
       - meetbot
-  web:
+  letsencrypt:
     build:
       context: ./
-      dockerfile: Dockerfile-web
+      dockerfile: Dockerfile-letsencrypt
     ports:
-      - "8080:80"
-    environment:
-      MEETINGS_LOCATION: /
+      - 8080:80
+      - 8443:443
     volumes:
-      - meetings:/usr/share/nginx/html/
-      - data:/data
+      - meetings:/config/www/meetings
+    restart:
+      always
+    depends_on:
+      - meetbot
+    environment:
+      PUID: 101
+      PGID: 101
+      URL: example.com
     
 volumes:
   data: {}

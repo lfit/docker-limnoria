@@ -5,6 +5,7 @@ LABEL description Docker image for the Limnoria IRC bot
 
 ENV MEETBOT_VERSION="master"
 
+ENV UPDATE_DATE="2020-04-15"
 RUN apk add --update git gettext && \
     pip3 install -r https://raw.githubusercontent.com/spacedog/meetbot/${MEETBOT_VERSION}/requirements.txt && \
     pip3 install git+https://github.com/spacedog/meetbot.git@${MEETBOT_VERSION} && \
@@ -19,10 +20,11 @@ ENV SUPYBOT_UID=101 \
     SUPYBOT_FREENODE_SERVERS="chat.freenode.net:6697" \
     SUPYBOT_FREENODE_CHANNELS="#abaranov-test" \
     SUPYBOT_PLUGINS="MeetBot Lart Admin ChannelLogger Misc User Owner Config Channel Karma" \
+    SUPYBOT_SERVICES_ENABLE="False" \
     MEETBOT_LOG_FILEDIR="/data/meetings/" \
     MEETBOT_LOG_URLPREFIX="http://example.com/meetings/" \
     MEETBOT_INFO_URL="http://wiki.debian.org/MeetBot" \
-    MEETBOT_FILENAMEPREFIX="%(channel)s/%%Y/%(channel)s.%%F-%%H.%%M"
+    MEETBOT_FILENAMEPATTERN="%(channel)s/%%Y/%(channel)s.%%F-%%H.%%M"
 
 RUN adduser -S -u $SUPYBOT_UID limnoria && \
     mkdir -p /data && \

@@ -1,0 +1,3 @@
+FROM linuxserver/letsencrypt
+# Enable autoindex
+RUN echo "autoindex on;" >  /etc/nginx/conf.d/autoindex.conf

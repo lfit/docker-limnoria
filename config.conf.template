@@ -162,7 +162,7 @@ supybot.plugins.Owner.quitMsg:
 supybot.plugins.User: True
 supybot.plugins.User.public: True
 supybot.plugins.alwaysLoadImportant: True
-supybot.plugins.Services: True
+supybot.plugins.Services: ${SUPYBOT_SERVICES_ENABLE}
 supybot.plugins.Services.public: True
 supybot.plugins.Services.nicks: ${SUPYBOT_NICK}
 supybot.plugins.Services.disabledNetworks: QuakeNet
