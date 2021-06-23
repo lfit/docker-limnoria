@@ -9,14 +9,17 @@ services:
       - data:/data
       - meetings:/data/meetings
     environment:
-      SUPYBOT_FREENODE_PASSWORD: "somepasswordhere"
+      SUPYBOT_NICK: "collabottest"
+      SUPYBOT_FREENODE_PASSWORD: "s0mep@ssw0rd!test"
       SUPYBOT_FREENODE_CHANNELS: "#abaranov-test"
+      SUPYBOT_LIBERA_PASSWORD: "s0mep@ssw0rd!test"
+      SUPYBOT_LIBERA_CHANNELS: "#abaranov-test"
     networks:
       - meetbot
-  letsencrypt:
+  web:
     build:
       context: ./
-      dockerfile: Dockerfile-letsencrypt
+      dockerfile: Dockerfile-web
     ports:
       - 8080:80
       - 8443:443
@@ -27,9 +30,7 @@ services:
     depends_on:
       - meetbot
     environment:
-      PUID: 101
-      PGID: 101
-      URL: example.com
+  #     MEETINGS_LOCATION: "/meetings"
     
 volumes:
   data: {}

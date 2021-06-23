@@ -8,6 +8,17 @@ supybot.networks.freenode.servers: ${SUPYBOT_FREENODE_SERVERS}
 supybot.networks.freenode.channels: ${SUPYBOT_FREENODE_CHANNELS}
 supybot.networks.freenode.channels.key:
 supybot.networks.freenode.ssl: True
+supybot.networks.freenode.sasl.username: ${SUPYBOT_NICK}
+supybot.networks.freenode.sasl.password: ${SUPYBOT_FREENODE_PASSWORD}
+supybot.networks.freenode.sasl.required: ${SUPYBOT_SASL_REQUIRED}
+supybot.networks.libera.password: ${SUPYBOT_LIBERA_PASSWORD}
+supybot.networks.libera.servers: ${SUPYBOT_LIBERA_SERVERS}
+supybot.networks.libera.channels: ${SUPYBOT_LIBERA_CHANNELS}
+supybot.networks.libera.channels.key:
+supybot.networks.libera.ssl: True
+supybot.networks.libera.sasl.username: ${SUPYBOT_NICK}
+supybot.networks.libera.sasl.password: ${SUPYBOT_LIBERA_PASSWORD}
+supybot.networks.libera.sasl.required: ${SUPYBOT_SASL_REQUIRED}
 supybot.reply.format.time: %I:%M %p, %B %d, %Y
 supybot.reply.format.time.elapsed.short: False
 supybot.reply.maximumLength: 131072
@@ -142,10 +153,12 @@ supybot.plugins.Lart: True
 supybot.plugins.Lart.public: True
 supybot.plugins.Lart.showIds: False
 supybot.plugins.MeetBot: True
-supybot.plugins.MeetBot.enableSupybotBasedConfig: False
+# Disable this due to https://github.com/dwt2/meetbot/issues/1
+# supybot.plugins.MeetBot.enableSupybotBasedConfig: false
 supybot.plugins.MeetBot.public: True
-supybot.plugins.MeetBot.logFileDir: /data/meetings/
-supybot.plugins.MeetBot.logUrlPrefix: http://example.con/meetings/
+supybot.plugins.MeetBot.logFileDir: ${SUPYBOT_MEETBOT_LOG_FILEDIR}
+supybot.plugins.MeetBot.logUrlPrefix: ${SUPYBOT_MEETBOT_LOG_URL_PREFIX}
+supybot.plugins.MeetBot.MeetBotInfoURL: http://wiki.debian.org/MeetBot
 supybot.plugins.Misc: True
 supybot.plugins.Misc.public: True
 supybot.plugins.Misc.listPrivatePlugins: True
@@ -206,6 +219,7 @@ supybot.protocols.irc.queuing.duplicates: False
 supybot.protocols.irc.queuing.rateLimit.join: 0.0
 supybot.protocols.http.peekSize: 4096
 supybot.protocols.http.proxy:
+supybot.protocols.ssl.verifyCertificates: True
 supybot.defaultIgnore: False
 supybot.externalIP:
 supybot.defaultSocketTimeout: 10

@@ -15,16 +15,20 @@ RUN apk add --update git gettext && \
 ENV SUPYBOT_UID=101 \
     SUPYBOT_NICK="collabottest" \
     SUPYBOT_USER="collabottest" \
-    SUPYBOT_NETWORKS="freenode" \
+    SUPYBOT_NETWORKS="freenode libera" \
     SUPYBOT_FREENODE_PASSWORD="" \
     SUPYBOT_FREENODE_SERVERS="chat.freenode.net:6697" \
     SUPYBOT_FREENODE_CHANNELS="#abaranov-test" \
+    SUPYBOT_LIBERA_PASSWORD="" \
+    SUPYBOT_LIBERA_SERVERS="irc.libera.chat:6697" \
+    SUPYBOT_LIBERA_CHANNELS="#abaranov-test" \
     SUPYBOT_PLUGINS="MeetBot Lart Admin ChannelLogger Misc User Owner Config Channel Karma" \
     SUPYBOT_SERVICES_ENABLE="False" \
-    MEETBOT_LOG_FILEDIR="/data/meetings/" \
-    MEETBOT_LOG_URLPREFIX="http://example.com/meetings/" \
-    MEETBOT_INFO_URL="http://wiki.debian.org/MeetBot" \
-    MEETBOT_FILENAMEPATTERN="%(channel)s/%%Y/%(channel)s.%%F-%%H.%%M"
+    SUPYBOT_SASL_REQUIRED="False" \
+    MEETBOT_LOG_FILEDIR="/data/meetings" \
+    MEETBOT_LOG_URLPREFIX="http://ircbot.wl.linuxfoundation.org/meetings/" \
+    MEETBOT_FILENAMEPATTERN="%(channel)s/%%Y/%(meetingname)s/%(channel)s-%(meetingname)s.%%F-%%H.%%M" \
+    MEETBOT_INFOURL="http://wiki.debian.org/MeetBot"
 
 RUN adduser -S -u $SUPYBOT_UID limnoria && \
     mkdir -p /data && \
@@ -40,4 +44,4 @@ VOLUME ["/data"]
 WORKDIR /data
 
 CMD envsubst < /config/config.conf.template > /config/config.conf \
-    && exec supybot /config/config.conf
+    && while true ; do supybot /config/config.conf; done

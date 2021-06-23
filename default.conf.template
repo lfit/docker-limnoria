@@ -6,6 +6,10 @@ server {
     #access_log  /var/log/nginx/host.access.log  main;
     root   /usr/share/nginx/html;
 
+    location / {
+        try_files $uri $uri/ ${MEETINGS_LOCATION}/$request_uri =404;
+    }
+
     location ${MEETINGS_LOCATION} {
         autoindex on;
     }
